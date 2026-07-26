@@ -1,29 +1,38 @@
-// src/components/Header.jsx
-import React, { useState } from 'react';
-import SideMenu from './SideMenu';
+import React, { useState } from 'react'
 
-function Header({ onSelectCategory }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Header() {
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen(!menuOpen)
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    setMenuOpen(false)
+  }
 
   return (
     <header className="header">
       <div className="container header-inner">
-        <div className="brand">
-          <span className="brand-mark">RH</span>
-          <span className="brand-name">Ваше название</span>
+        <div className="brand" onClick={() => scrollTo('top')}>
+            <img src="/logo.jpg" alt="WoodSupply" className="brand-logo" />
         </div>
-        <button className="catalog-toggle" onClick={toggleMenu}>
-          <span className="burger-icon">
-            <span></span><span></span><span></span>
-          </span>
-          <span>Каталог</span>
+
+        <button className="burger" onClick={toggleMenu} aria-label="Меню">
+          ☰
         </button>
+
+        <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
+          <button onClick={() => scrollTo('about')}>О нас</button>
+          <button onClick={() => scrollTo('materials')}>Материалы</button>
+          <button onClick={() => scrollTo('portfolio')}>Проекты</button>
+          <button onClick={() => scrollTo('how')}>Как работаем</button>
+          <button onClick={() => scrollTo('partners')}>Партнёры</button>
+          <button className="nav-cta" onClick={() => scrollTo('contacts')}>Связаться</button>
+        </nav>
       </div>
-      <SideMenu isOpen={menuOpen} onClose={toggleMenu} onSelectCategory={onSelectCategory} />
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

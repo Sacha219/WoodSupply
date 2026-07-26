@@ -1,17 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-const heroImage = 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1400&q=80';
+const heroImage = '/hero.jpg'
 
 function Hero() {
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
-    <section className="hero">
-      <img src={heroImage} alt="Мебель RoyalHome" />
-      <div className="hero-content">
-        <p className="hero-eyebrow">Качество и стиль(можно и другое что-нибудь)</p>
-        <h1>Мебель для вашего дома</h1>
+    <section className="hero" id="top">
+      <img src={heroImage} alt="WoodSupply мастерская" />
+      <div className="hero-overlay" />
+      <div className="container hero-content">
+        <p className="hero-eyebrow">Изготовление по фото, чертежу</p>
+        <h1>WoodSupply — мебель на заказ</h1>
+        <p className="hero-sub">Работаем по всей Беларуси и России.</p>
+        <button className="primary-button" onClick={() => scrollTo('portfolio')}>
+          Смотреть проекты
+        </button>
       </div>
     </section>
-  );
+  )
 }
 
-export default Hero;
+export default Hero
