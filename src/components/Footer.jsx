@@ -5,8 +5,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-brand">
-          <span className="brand-mark">W</span>
-          <span>WoodSupply</span>
+           <img src="/logo.jpg" alt="WoodSupply" className="footer-logo" />
         </div>
         <div className="footer-links">
           <a href="#about">О нас</a>

@@ -5,7 +5,7 @@ function SerialProduction() {
   return (
     <section className="section serial" id="serial">
       <div className="container">
-        <h2 className="section-title">Готовые изделия в наличии</h2>
+        <h2 className="section-title">Готовые изделия в наличии(нужно ли оно вам)</h2>
         <p className="serial-intro">
           Мы запускаем серию изделий, которые всегда есть на складе. Забирайте сразу или заказывайте доставку.
         </p>

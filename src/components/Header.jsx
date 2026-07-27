@@ -24,7 +24,6 @@ function Header() {
 
         <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <button onClick={() => scrollTo('about')}>О нас</button>
-          <button onClick={() => scrollTo('materials')}>Материалы</button>
           <button onClick={() => scrollTo('portfolio')}>Проекты</button>
           <button onClick={() => scrollTo('how')}>Как работаем</button>
           <button onClick={() => scrollTo('partners')}>Партнёры</button>

@@ -97,61 +97,313 @@ body {
   .about-grid { grid-template-columns: 1fr; }
 }
 
-/* ===== How we work ===== */
-.steps-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-}
-.step-card {
-  background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-  border-left: 4px solid #b47340;
-}
-.step-number { display: inline-block; font-size: 2rem; font-weight: 700; color: #b47340; margin-bottom: 8px; }
-.step-card h3 { margin-bottom: 4px; }
-.step-card p { color: #555; font-size: 0.95rem; }
-
-.how-note { margin-top: 32px; background: #f0ede8; padding: 20px; border-radius: 12px; }
-
-@media (max-width: 768px) {
-  .steps-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 480px) {
-  .steps-grid { grid-template-columns: 1fr; }
+/* ===== How we work (стильный блок с карточками) ===== */
+.how-heading-left {
+  margin-bottom: 36px;
 }
 
-/* ===== Portfolio ===== */
-.portfolio-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-}
-.portfolio-item {
-  cursor: pointer; border-radius: 12px; overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s;
-}
-.portfolio-item:hover { transform: scale(1.02); }
-.portfolio-item img { width: 100%; height: 220px; object-fit: cover; display: block; }
-
-@media (max-width: 768px) {
-  .portfolio-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 480px) {
-  .portfolio-grid { grid-template-columns: 1fr; }
+.how-eyebrow-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 999;
-  display: flex; align-items: center; justify-content: center;
-  padding: 20px;
+.how-eyebrow-line {
+  width: 40px;
+  height: 2px;
+  background: #b47340;
+  flex-shrink: 0;
 }
-.modal-content {
-  background: #fff; padding: 16px; border-radius: 16px; max-width: 700px; width: 100%;
+
+.how-eyebrow-left {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #b47340;
+  font-weight: 600;
+  margin: 0;
+}
+
+.section-title-left {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin: 8px 0 0 0;
+  color: #1e1e1e;
+}
+
+/* Сетка карточек */
+.steps-grid-new {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.step-card-new {
+  background: #ffffff;
+  border: 1px solid #ede8e3;
+  border-radius: 16px;
+  padding: 24px 18px 20px;
+  transition: all 0.35s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.step-card-new:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+  border-color: #d4c9bf;
+}
+
+.step-number-new {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #7a4f28;          /* более тёмный, насыщенный терракотовый */
+  line-height: 1;
+  margin-bottom: 12px;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.02em;
+}
+
+.step-card-new h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e1e1e;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.step-card-new p {
+  font-size: 0.92rem;
+  color: #4d4d4d;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+.how-eyebrow-line {
+  background: #7a4f28;      /* тот же цвет, что и у цифр */
+}
+
+.how-eyebrow-left {
+  color: #7a4f28;           /* тоже делаем насыщеннее */
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 1024px) {
+  .steps-grid-new {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .steps-grid-new {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .step-card-new {
+    padding: 18px 16px;
+  }
+
+  .step-number-new {
+    font-size: 1.8rem;
+  }
+}
+/* ===== Portfolio Carousel ===== */
+.portfolio-carousel {
   position: relative;
+  overflow: hidden;
 }
-.modal-close {
-  position: absolute; top: 6px; right: 14px; background: none; border: none;
-  font-size: 2rem; cursor: pointer;
-}
-.modal-content img { width: 100%; border-radius: 8px; }
 
+.portfolio-track-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.portfolio-track {
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+}
+
+.portfolio-item {
+  flex: 0 0 calc(33.333% - 16px); /* 3 колонки с учётом gap */
+  min-width: 0;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  height: 320px;
+}
+
+.portfolio-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Стрелки */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid #e8e0d8;
+  color: #2d2d2d;
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-color: #b47340;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.carousel-arrow-left {
+  left: 12px;
+}
+
+.carousel-arrow-right {
+  right: 12px;
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 768px) {
+  .portfolio-item {
+    flex: 0 0 calc(50% - 12px);
+    height: 240px;
+  }
+
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .carousel-arrow-left {
+    left: 8px;
+  }
+  .carousel-arrow-right {
+    right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-item {
+    flex: 0 0 calc(50% - 10px);
+    height: 180px;
+  }
+
+  .carousel-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
+
+/* ===== Модальное окно (лайтбокс) ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: calc(95vh - 24px);
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content p {
+  margin: 12px 0 0 0;
+  text-align: center;
+  color: #1e1e1e;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 /* ===== Serial ===== */
 .serial-intro { font-size: 1.1rem; color: #555; margin-bottom: 30px; }
 .serial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
@@ -599,11 +851,11 @@ body {
 /* ===== Materials Section ===== */
 .materials-intro {
   font-size: 1.1rem;
-  color: #6b6b6b;
+  color: #2d2d2d;          /* тёмный */
   margin-bottom: 40px;
   max-width: 700px;
   line-height: 1.7;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .materials-grid-full {
@@ -617,7 +869,6 @@ body {
   background: #fcfaf8;
   padding: 24px 18px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
   border: 1px solid #f0ebe6;
   transition: all 0.25s ease;
   text-align: center;
@@ -632,17 +883,17 @@ body {
 .material-card h3 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #3d3d3d;
+  color: #1e1e1e;           /* очень тёмный */
   margin-bottom: 8px;
   letter-spacing: 0.02em;
 }
 
 .material-card p {
-  font-size: 0.9rem;
-  color: #8a7f76;
+  font-size: 0.95rem;
+  color: #3d3d3d;           /* тёмный, но чуть мягче */
   line-height: 1.5;
   margin: 0;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* ===== Processes strip ===== */
@@ -702,3 +953,40 @@ body {
   font-size: 1.1rem;
   /* остальные стили уже есть */
 }
+
+/* ===== Логотип в шапке ===== */
+.brand-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* ===== Логотип в футере ===== */
+.footer-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+/* ===== Выравнивание текста по ширине ===== */
+.about-short p,
+.about-full p,
+.materials .materials-intro {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Карточки "Как мы работаем" — только левое выравнивание */
+.how-we-work .step-card p {
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .about-short p,
+  .about-full p,
+  .how-we-work .step-card p,
+  .materials-intro {
+    text-align: left; /* отключаем justify на телефонах */
+  }
+}
+
