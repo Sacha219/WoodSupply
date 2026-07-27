@@ -1,6 +1,6 @@
 import React from 'react'
 
-const heroImage = '/hero.jpg'
+const heroImage = 'hero.jpg'
 
 function Hero() {
   const scrollTo = (id) => {

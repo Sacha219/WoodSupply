@@ -15,7 +15,7 @@ function Header() {
     <header className="header">
       <div className="container header-inner">
         <div className="brand" onClick={() => scrollTo('top')}>
-            <img src="/logo.jpg" alt="WoodSupply" className="brand-logo" />
+            <img src="logo.jpg" alt="WoodSupply" className="brand-logo" />
         </div>
 
         <button className="burger" onClick={toggleMenu} aria-label="Меню">
