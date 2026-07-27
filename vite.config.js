@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/', // ← для корневого домена (wood-supply.ru)
+  // или base: './', // если сайт в корне — тоже работает, но лучше '/'
 })
